@@ -14,6 +14,7 @@ secret_stores = argocd.Application {
             repoURL = "https://github.com/amfaro/gitops.git"
             targetRevision = "HEAD"
             path = "system/secret-stores"
+            plugin = {name = "kcl-v1.0"}
         }
         destination = {
             server = "https://kubernetes.default.svc"
