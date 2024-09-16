@@ -2,9 +2,8 @@
 
 ## Tasks
 
-### generate-app-of-apps
+### install-app-of-apps
 
 ```bash
-kcl run templates
+kcl run
 ```
-
