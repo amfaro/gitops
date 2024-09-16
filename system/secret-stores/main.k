@@ -2,16 +2,12 @@
     {
         apiVersion = "external-secrets.io/v1beta1"
         kind = "ClusterSecretStore"
-        metadata = {
-            name = "cluster-secret-store"
-        }
+        metadata = {name = "cluster-secret-store"}
         spec = {
             provider = {
                 onepassword = {
                     connectHost = "http://onepassword-connect.1password.svc.cluster.local:8080"
-                    vaults = {
-                        k8s = 1
-                    }
+                    vaults = {k8s = 1}
                     auth = {
                         secretRef = {
                             connectTokenSecretRef = {
@@ -37,16 +33,10 @@
                 kind = "ClusterSecretStore"
                 name = "cluster-secret-store"
             }
-            target = {
-                creationPolicy = "Owner"
-            }
-            dataFrom = [
-                {
-                    extract = {
-                        key = "cloudflare--3d"
-                    }
-                }
-            ]
+            target = {creationPolicy = "Owner"}
+            dataFrom = [{
+                extract = {key = "cloudflare--3d"}
+            }]
         }
     }
 ]
