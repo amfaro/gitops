@@ -5,3 +5,4 @@ version = "0.0.1"
 
 [dependencies]
 k8s = "1.31"
+argo-cd = "0.1.1"
