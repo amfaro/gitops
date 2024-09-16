@@ -1,0 +1,37 @@
+import argo_cd.v1alpha1 as argocd
+
+external_secrets = argocd.Application {
+    apiVersion = "argoproj.io/v1alpha1"
+    kind = "Application"
+    metadata = {
+        name = "external-secrets"
+        namespace = "argocd"
+        annotations = {
+            "argocd.argoproj.io/sync-wave" = "0"
+        }
+    }
+    spec = {
+        project = "default"
+        source = {
+            chart = "external-secrets"
+            repoURL = "https://charts.external-secrets.io"
+            targetRevision = "0.10.2"
+            helm = {
+                releaseName = "external-secrets"
+            }
+        }
+        destination = {
+            server = "https://kubernetes.default.svc"
+            namespace = "external-secrets"
+        }
+        syncPolicy = {
+            syncOptions = [
+                "CreateNamespace=true"
+            ]
+            automated = {
+                prune = True
+                selfHeal = True
+            }
+        }
+    }
+}
