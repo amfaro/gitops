@@ -5,6 +5,6 @@ manifests.yaml_stream(sum([
     # [cloudflare_tunnels]
     [external_secrets]
     [onepassword]
-    # [secret_stores]
+    [secret_stores]
     [test]
 ], []))
