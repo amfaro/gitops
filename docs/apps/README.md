@@ -48,3 +48,9 @@ echo $pass | pbcopy
 ```bash
 open https://localhost:8080
 ```
+
+### install-app-of-apps
+
+```bash
+kcl run | k apply -f -
+```
