@@ -1,7 +1,6 @@
-import manifests
 import argo_cd.v1alpha1 as argocd
 
-_app = argocd.Application {
+harbor = argocd.Application {
     apiVersion = "argoproj.io/v1alpha1"
     kind = "Application"
     metadata = {
@@ -30,4 +29,3 @@ _app = argocd.Application {
     }
 }
 
-manifests.yaml_stream([_app])
