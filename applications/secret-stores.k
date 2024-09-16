@@ -13,7 +13,7 @@ secret_stores = argocd.Application {
         source = {
             repoURL = "https://github.com/amfaro/gitops.git"
             targetRevision = "HEAD"
-            path = "system/secret-stores"
+            path = "system/secret-stores.k"
             plugin = {name = "kcl-v1.0"}
         }
         destination = {
