@@ -5,5 +5,5 @@
 ### install-app-of-apps
 
 ```bash
-kcl run
+kcl run | kubectl apply -f -
 ```
