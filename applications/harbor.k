@@ -13,7 +13,16 @@ harbor = argocd.Application {
             chart = "harbor"
             repoURL = "https://helm.goharbor.io"
             targetRevision = "1.15.1"
-            helm = {}
+            helm = {
+                values = """
+                  expose:
+                    type: clusterIP
+                    tls:
+                      enabled: false
+                    ingress:
+                      enabled: false
+                """
+            }
         }
         destination = {
             server = "https://kubernetes.default.svc"
