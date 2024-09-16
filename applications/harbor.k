@@ -6,6 +6,7 @@ harbor = argocd.Application {
     metadata = {
         name = "harbor"
         namespace = "argocd"
+        annotations = {"argocd.argoproj.io/sync-wave" = "0"}
     }
     spec = {
         project = "default"
@@ -13,16 +14,14 @@ harbor = argocd.Application {
             chart = "harbor"
             repoURL = "https://helm.goharbor.io"
             targetRevision = "1.15.1"
-            helm = {
-                values = """
+            helm = {values = """
                   expose:
                     type: clusterIP
                     tls:
                       enabled: false
                     ingress:
                       enabled: false
-                """
-            }
+                """}
         }
         destination = {
             server = "https://kubernetes.default.svc"
