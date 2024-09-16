@@ -12,7 +12,7 @@ harbor = argocd.Application {
         source = {
             chart = "harbor"
             repoURL = "https://helm.goharbor.io"
-            targetRevision = "2.11.1"
+            targetRevision = "1.15.1"
             helm = {}
         }
         destination = {
