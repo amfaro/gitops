@@ -1,0 +1,100 @@
+argo_workflows = [
+    {
+        apiVersion = "argoproj.io/v1alpha1"
+        kind = "Application"
+        metadata = {
+            name = "argo-workflows"
+            namespace = "argocd"
+        }
+        spec = {
+            project = "default"
+            source = {
+                chart = "argo-workflows"
+                repoURL = "https://argoproj.github.io/argo-helm"
+                targetRevision = "0.42.1"
+                helm = {
+                    values = r"""server:
+  extraArgs:
+    - --auth-mode=server
+"""
+                }
+            }
+            destination = {
+                server = "https://kubernetes.default.svc"
+                namespace = "argo-workflows"
+            }
+            syncPolicy = {
+                automated = {
+                    prune = True
+                    selfHeal = True
+                }
+                syncOptions = [
+                    "CreateNamespace=true"
+                ]
+            }
+        }
+    }
+    {
+        apiVersion = "rbac.authorization.k8s.io/v1"
+        kind = "Role"
+        metadata = {
+            name = "argo-workflows-executor"
+            namespace = "argo-workflows"
+        }
+        rules = [
+            {
+                apiGroups = [
+                    "argoproj.io"
+                ]
+                resources = [
+                    "workflowtaskresults"
+                ]
+                verbs = [
+                    "create"
+                    "patch"
+                ]
+            }
+            {
+                apiGroups = [
+                    ""
+                ]
+                resources = [
+                    "pods"
+                ]
+                verbs = [
+                    "get"
+                    "watch"
+                    "patch"
+                ]
+            }
+        ]
+    }
+    {
+        apiVersion = "v1"
+        kind = "ServiceAccount"
+        metadata = {
+            name = "argo-workflows"
+            namespace = "argo-workflows"
+        }
+    }
+    {
+        apiVersion = "rbac.authorization.k8s.io/v1"
+        kind = "RoleBinding"
+        metadata = {
+            name = "argo-workflows-executor-binding"
+            namespace = "argo-workflows"
+        }
+        subjects = [
+            {
+                kind = "ServiceAccount"
+                name = "argo-workflows"
+                namespace = "argo-workflows"
+            }
+        ]
+        roleRef = {
+            kind = "Role"
+            name = "argo-workflows-executor"
+            apiGroup = "rbac.authorization.k8s.io"
+        }
+    }
+]
