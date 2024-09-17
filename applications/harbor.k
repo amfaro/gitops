@@ -21,6 +21,7 @@ harbor = argocd.Application {
                       enabled: false
                     ingress:
                       enabled: false
+                  externalURL: https://harbor.jallen7usa.com
                 """}
         }
         destination = {
