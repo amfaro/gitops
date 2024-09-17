@@ -21,6 +21,7 @@ cloudflare_tunnels = [
                 repoURL = "https://github.com/amfaro/gitops.git"
                 targetRevision = "HEAD"
                 path = "system/cloudflare-tunnels"
+                plugin = {name = "kcl-v1.0"}
             }
             destination = {
                 server = "https://kubernetes.default.svc"
