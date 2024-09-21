@@ -18,7 +18,7 @@ secret_stores = argocd.Application {
         }
         destination = {
             server = "https://kubernetes.default.svc"
-            namespace = "cloudflare-operator-system"
+            namespace = "external-secrets"
         }
         syncPolicy = {
             automated = {
