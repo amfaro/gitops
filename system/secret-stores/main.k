@@ -53,7 +53,7 @@
             }
             target = {creationPolicy = "Owner"}
             dataFrom = [{
-                extract = {key = "harbor--gmatter"}
+                extract = {key = "minio-configuration--xcel"}
             }]
         }
     }
