@@ -39,4 +39,22 @@
             }]
         }
     }
+    {
+        apiVersion = "external-secrets.io/v1beta1"
+        kind = "ExternalSecret"
+        metadata = {
+            name = "harbor-credentials"
+            namespace = "argo-workflows"
+        }
+        spec = {
+            secretStoreRef = {
+                kind = "ClusterSecretStore"
+                name = "cluster-secret-store"
+            }
+            target = {creationPolicy = "Owner"}
+            dataFrom = [{
+                extract = {key = "harbor--amfaro"}
+            }]
+        }
+    }
 ]
