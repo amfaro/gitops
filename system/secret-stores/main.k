@@ -53,7 +53,7 @@
             }
             target = {creationPolicy = "Owner"}
             dataFrom = [{
-                extract = {key = "harbor--amfaro"}
+                extract = {key = "harbor--gmatter"}
             }]
         }
     }
