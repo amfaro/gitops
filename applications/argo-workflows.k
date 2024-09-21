@@ -12,12 +12,10 @@ argo_workflows = [
                 chart = "argo-workflows"
                 repoURL = "https://argoproj.github.io/argo-helm"
                 targetRevision = "0.42.1"
-                helm = {
-                    values = r"""server:
+                helm = {values = r"""server:
   extraArgs:
     - --auth-mode=server
-"""
-                }
+"""}
             }
             destination = {
                 server = "https://kubernetes.default.svc"
@@ -28,9 +26,7 @@ argo_workflows = [
                     prune = True
                     selfHeal = True
                 }
-                syncOptions = [
-                    "CreateNamespace=true"
-                ]
+                syncOptions = ["CreateNamespace=true"]
             }
         }
     }
@@ -43,24 +39,16 @@ argo_workflows = [
         }
         rules = [
             {
-                apiGroups = [
-                    "argoproj.io"
-                ]
-                resources = [
-                    "workflowtaskresults"
-                ]
+                apiGroups = ["argoproj.io"]
+                resources = ["workflowtaskresults"]
                 verbs = [
                     "create"
                     "patch"
                 ]
             }
             {
-                apiGroups = [
-                    ""
-                ]
-                resources = [
-                    "pods"
-                ]
+                apiGroups = [""]
+                resources = ["pods"]
                 verbs = [
                     "get"
                     "watch"
@@ -84,13 +72,11 @@ argo_workflows = [
             name = "argo-workflows-executor-binding"
             namespace = "argo-workflows"
         }
-        subjects = [
-            {
-                kind = "ServiceAccount"
-                name = "argo-workflows"
-                namespace = "argo-workflows"
-            }
-        ]
+        subjects = [{
+            kind = "ServiceAccount"
+            name = "argo-workflows"
+            namespace = "argo-workflows"
+        }]
         roleRef = {
             kind = "Role"
             name = "argo-workflows-executor"
