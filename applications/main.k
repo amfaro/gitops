@@ -5,6 +5,7 @@ manifests.yaml_stream(sum([
     [harbor]
     [cloudflare_tunnels]
     [external_secrets]
+    [nocodb]
     [onepassword]
     [secret_stores]
     [test]
